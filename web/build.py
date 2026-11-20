@@ -380,7 +380,23 @@ i2 = ["<h2 id='idea2'>Idea 2 · Do explanations keep the emulator's real errors?
       "truth-forced). Error = model − E3SM. Tolerance τ = max(2 × same-seed SD, 1% of spatial SD), sweep k ∈ {1, 2, 3}. "
       "Explanations: ocean skip.0-only, atmosphere blocks-only / big-skip-only (corrector in/out), PCA-k / SAE at SFNO blocks. "
       "Scores: A_ok, A_err, three-way split (reproduces / corrects / other), scalar-offset and per-component-gain controls, "
-      "empty-explanation and seed-ceiling anchors, block bootstrap.</p>", pending("Phase 2")]
+      "empty-explanation and seed-ceiling anchors, block bootstrap.</p>"]
+st2 = J("idea2_errors/results/strata_L7_K2.json")
+if st2:
+    rows = []
+    for n, v in st2["variables"].items():
+        rows.append([n, f(v["error_area_frac"], 2)] + [f"{v[e]['A_ok']:.2f} / {v[e]['A_err']:.2f}" if e in v and v[e]["A_err"] is not None and v[e]["A_ok"] == v[e]["A_ok"] else "–"
+                                                       for e in ("seed1", "pca0", "pca8", "pca32", "pca128", "offset", "affine")])
+    i2 += ["<h3>Starter result (hackathon track T2; not a finished result)</h3>",
+           "<p>One-step forecasts from 12 truth states (fit: 1996, 2042; score: 4 dates of 2047), 4 seeds, pre-corrector, "
+           "τ = max(2σ_seed, 1% spatial SD). Cells: A_ok / A_err.</p>",
+           table(["variable", "error area", "seed ceiling", "empty (PCA-0)", "PCA-8 L7", "PCA-32 L7", "PCA-128 L7", "scalar offset", "affine persistence"], rows),
+           "<p class='note'>Latent explanations beat the output-level controls by a wide margin; PCA-128 at block 7 reaches "
+           "the seed ceiling for T_7 and FLUT. PS is 'error' everywhere and precipitation on 68% because this is "
+           "pre-corrector output: the corrector column is the first thing to add. No bootstrap; 4 score dates.</p>",
+           repro(["python idea2_errors/strata.py data/states/atm12 --layer 7"], ["idea2_errors/results/strata_L7_K2.json"])]
+else:
+    i2.append(pending("Phase 2"))
 
 # ======================================================================= idea 3
 i3 = ["<h2 id='idea3'>Idea 3 · How much of each spatial scale survives one step?</h2>",
@@ -481,7 +497,14 @@ if gb and gs:
                                          "preregistered single-variable gain (unbalanced, hence low)."))
     i3.append(repro(["python -m hc.evaluate data/states/atm12m5 --steps 1 --capture-atm 1 --no-ocn-pred --start 1996-01-11 ... (12 dates − 5 d)",
                      "python idea3_gain/gain_atm_bal.py data/states/atm12 data/states/atm12m5 v2"], ["idea3_gain/results/gain_atm_bal_v2.json"]))
-i3.append(pending("rollout-spectra link (Phase 2, with the multi-year control rollouts); other checkpoints"))
+if os.path.exists(os.path.join(ROOT, "idea3_gain/results/rollout_spectra.png")):
+    shutil.copy(os.path.join(ROOT, "idea3_gain/results/rollout_spectra.png"), FIG)
+    i3 += ["<h3>Rollout spectra (starter, track T3)</h3>",
+           figure("rollout_spectra.png", "Power of 1-year C1A0 rollouts (started from truth in 1995, 2040, 2045) relative to "
+                                         "E3SM over months 7–12, per SH degree; dashed: balanced one-step projection. Temperature "
+                                         "power matches truth at all l; winds lose 11–17% at l = 80–89. Pre-corrector, 06 vs 00 UTC sampling."),
+           repro(["python idea3_gain/rollout_spectra.py"], ["idea3_gain/results/rollout_spectra.json"])]
+i3.append(pending("other checkpoints; ViT comparison"))
 
 # ======================================================================= restatements, pitfalls, agents
 restate = ["<h2 id='restate'>Numbers that are restatements of one another</h2><ul>",

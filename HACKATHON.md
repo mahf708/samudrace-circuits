@@ -43,6 +43,25 @@ python -c "from exege.circuits.contract import open_patchable; from hc import pa
 a = open_patchable('data/states/t2045', 'samudra', checkpoint=paths.CKPT['C1A0'], device='cuda'); print(a.graph().senders)"
 ```
 
+### A 15-minute walkthrough: truth-started run to a scored number (tested, timings measured on one A100)
+
+```bash
+python -m hc.evaluate runs/demo --start 2045-01-01 --steps 4 --capture   # ~6.5 min: ~6 min is dataset indexing,
+                                                                          # each 5-day coupled step ~3.5 s after that
+python -m hc.meta runs/demo                                               # official ocean mask for the captures
+python examples/walkthrough.py runs/demo 4                                # ~30 s
+# -> runs/demo/walkthrough.json: FLUS slope ≈ -1.82 K per 100 W/m2, skip.0 share ≈ 0.85
+```
+
+`examples/walkthrough.py` is ~80 lines and shows the whole pattern:
+- `hc.set_numerics()` (fp32);
+- the fixed ocean mask;
+- a physical-unit perturbation through `hc.graph`;
+- an edge patch through the exege `samudra` adapter;
+- a JSON with the result.
+
+Copy it for your own experiment. A 73-step (1-year) truth-started run took 7 min (431 s), or 11 min (649 s) with `--capture`, which writes every ocean input.
+
 ## 3. What is ready to use
 
 | Want | Use |
@@ -74,6 +93,19 @@ Each track lists what is known, the first command, and a rough cost.
   variance and spectrum, sea ice extent, 0–300 m heat content. Use the preregistered "same/better/worse" rule.
 
 **T2. Do explanations keep the emulator's real errors? (Idea 2; PREREG 2)**
+- **Starter (tested, ~1 min on one GPU):** `python idea2_errors/strata.py data/states/atm12 --layer 7`.
+  - It runs one-step forecasts from 12 truth states with 4 seeds and scores them against E3SM truth at t + 6 h
+    with the preregistered τ (K = 2).
+  - Explanations included: seed ceiling, PCA-k at an SFNO block (k = 0 is the empty explanation), and the
+    scalar-offset and affine-persistence controls.
+  - Writes `results/strata_L7_K2.{json,md}`. Add explanations to `EXPLANATIONS`.
+- **First results** (2047 score dates, pre-corrector):
+  - Seed ceiling A_err 0.77–0.82.
+  - PCA-128 at block 7 reaches A_err 0.88 (T_7), 0.87 (FLUT), 0.56 (FSUTOA).
+  - The output-level controls stay ≤ 0.28.
+  - **PS is "error" on 100% of nodes and precipitation on 68%: the corrector column is missing.** Add it first.
+- Still missing: the corrector in/out column (use fme's corrector on the network output), more dates, the block
+  bootstrap, the ocean (`hc.truth_ocean.build` gives truth-forced inputs and targets), and the pre-corrector strata.
 - Error = model − truth at the same time.
 - τ = max(2·σ_seed, 1% of the spatial SD).
 - Explanations: ocean skip.0-only (patch the deep path to its fit-date mean), atmosphere blocks-only / big-skip-only,
@@ -82,6 +114,13 @@ Each track lists what is known, the first command, and a rough cost.
 - Start: `hc.evaluate --steps 1 --capture-atm 1 --seed {0..3}` on many dates (batch them as several `--start`).
 
 **T3. Does the one-step gain predict where rollouts lose small scales? (Idea 3, rollout link)**
+- **Starter (tested, CPU, seconds):** `python idea3_gain/rollout_spectra.py` writes
+  `idea3_gain/results/rollout_spectra.{json,png}`, the rollout/truth power ratio per l over months 7–12.
+  First result:
+  - T_4 and T_7 power matches truth at all l (±6%).
+  - Winds lose small-scale power: UV_4 ×0.83–0.85 and UV_7 ×0.89–0.90 at l = 80–89.
+  - This fits the balanced-probe result: the one-step amount of each scale is right while the pattern
+    decorrelates.
 - 1-year rollouts already recorded daily pre-corrector spectra: `data/states/t1995/atm_spectra.npz`,
   `data/states/t2045/atm_spectra.npz`, `data/rollout1y/t2040/atm_spectra.npz` (T_4, T_7 scalar; (U,V)_4, (U,V)_7
   vector-SHT power per l).

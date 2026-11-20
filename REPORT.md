@@ -40,7 +40,13 @@ SHFLX/FLDS 0.27 reproduce.
 - Why coupled fine-tuning fixes LHFLX's sign.
 - The SHFLX sign under boxes.
 
-## Idea 2: errors (not started; a hackathon track)
+## Idea 2: errors (hackathon track T2; starter only)
+
+**Starter result** (`idea2_errors/strata.py`; 4 score dates in 2047, 4 seeds, pre-corrector; no bootstrap):
+- Seed ceiling A_err 0.77–0.82.
+- PCA-128 at block 7: A_err 0.88 (T_7), 0.87 (FLUT), 0.56 (FSUTOA).
+- Scalar-offset and affine-persistence controls ≤ 0.28.
+- PS and precipitation errors are dominated by the missing corrector.
 
 **Ready:**
 - One-step forecasts from truth with matching targets: `hc.evaluate` writes `autoregressive_predictions.nc` and
@@ -61,8 +67,9 @@ SHFLX/FLDS 0.27 reproduce.
 **Narrowed:** the preregistered single-variable gain is not a scale-selectivity measure on its own (balance).
 
 **Open:**
-- The rollout-spectra link: daily spectra of 1-year runs from 1995/2040/2045 are recorded
-  (`data/states/t*/atm_spectra.npz`, `data/rollout1y`) but not yet analysed.
+- The rollout-spectra link (starter `idea3_gain/rollout_spectra.py`), months 7–12 of 1-year runs: T_4/T_7 power
+  matches truth at all l (±6%), while winds lose 11–17% at l = 80–89. Linking this quantitatively to the one-step
+  curves is open.
 - Other checkpoints.
 - The ViT comparison.
 
