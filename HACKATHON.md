@@ -64,9 +64,12 @@ Each track lists what is known, the first command, and a rough cost.
 **T1. Does de-leaking FLUS change the coupled climate? (Idea 1 step 2; PREREG 1.2)**
 - One-step: input replacement shifts the next SST by +0.17 K, but the coupled FLUS is already close to
   start-of-window emission (difference ~6 W/m² RMS).
-- Start: `python -m hc.evaluate runs/ctl_1995_s0 --start 1995-01-01 --steps 365 --seed 0 --mem 5 --monthly --no-ocn-pred`
+- Start: `python -m hc.evaluate runs/ctl_1995_s0 --start 1995-01-01 --steps 365 --seed 0 --mem 5 --monthly`
   and the same with `--deleak`. Do this for ICs 1995-01-01, 2040-01-01 and 2045-01-01 and seeds 0 and 1.
-- Each 5-year run is about 25 min on one A100.
+  Do not pass `--no-ocn-pred`: the ocean predictions and truth targets are written every step (about 1.5 GB per
+  year), and scoring needs them.
+- Cost (estimated, not measured): about 25 min per 5-year run on one A100, based on 1-year runs of ~4 min plus
+  ~5 min of dataset indexing. Test a 73-step run first.
 - Score against `autoregressive_target` (or the truth files): SST bias and drift, seasonal cycle, Niño3.4
   variance and spectrum, sea ice extent, 0–300 m heat content. Use the preregistered "same/better/worse" rule.
 
