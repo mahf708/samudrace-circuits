@@ -1,0 +1,28 @@
+{
+ "defaults": {
+  "cudnn.allow_tf32": true,
+  "matmul.allow_tf32": false,
+  "cudnn.benchmark": false
+ },
+ "tf32_default": {
+  "vs_fme_capture_maxabs": 0.013564586639404297,
+  "vs_fme_capture_sst_maxabs_K": 0.009038243264285484,
+  "repeat_maxabs": 0.0,
+  "batch4_vs_single_maxabs": 0.01606881618499756,
+  "batch4_vs_single_sst_maxabs_K": 0.021133987197913484
+ },
+ "tf32_off": {
+  "vs_fme_capture_maxabs": 0.13544967770576477,
+  "vs_fme_capture_sst_maxabs_K": 0.05931745074030914,
+  "repeat_maxabs": 0.0,
+  "batch4_vs_single_maxabs": 0.00014394521713256836,
+  "batch4_vs_single_sst_maxabs_K": 4.290743356705207e-05
+ },
+ "tf32_off_deterministic": {
+  "vs_fme_capture_maxabs": 0.13544967770576477,
+  "vs_fme_capture_sst_maxabs_K": 0.05931745074030914,
+  "repeat_maxabs": 0.0,
+  "batch4_vs_single_maxabs": 0.00014394521713256836,
+  "batch4_vs_single_sst_maxabs_K": 4.290743356705207e-05
+ }
+}

@@ -1,0 +1,45 @@
+{
+ "device": "NVIDIA A100-SXM4-80GB",
+ "graph_vs_module_maxabs": 0.0,
+ "graph_vs_module_bitwise": true,
+ "module_vs_captured_fme_output_maxabs": 0.013564586639404297,
+ "replay_vs_module_maxabs": 0.0,
+ "replay_vs_module_bitwise": true,
+ "replay_vs_captured_fme_output_maxabs": 0.013564586639404297,
+ "replay_batch4_vs_single_maxabs": 0.01606881618499756,
+ "same_seed_bitwise": {
+  "x_000.npy": true,
+  "x_001.npy": true,
+  "y_000.npy": true,
+  "y_001.npy": true,
+  "ocean_predictions_all_vars": true,
+  "atmosphere_predictions_all_vars": true
+ },
+ "same_seed_all_bitwise": true,
+ "deleak": {
+  "step0": {
+   "control_FLUS_mean_ocean": 323.7974548339844,
+   "deleak_FLUS_mean_ocean": 324.54205322265625,
+   "deleak_over_emission_median": 0.9997000694274902,
+   "deleak_over_emission_p05_p95": [
+    2.297017454111483e-05,
+    1.0
+   ],
+   "control_minus_deleak_rms_Wm2": 5.551651477813721,
+   "sst_input_identical": true,
+   "other_channels_identical": true
+  },
+  "step1": {
+   "control_FLUS_mean_ocean": 324.5522766113281,
+   "deleak_FLUS_mean_ocean": 325.3668518066406,
+   "deleak_over_emission_median": 0.9997711777687073,
+   "deleak_over_emission_p05_p95": [
+    0.0,
+    1.0
+   ],
+   "control_minus_deleak_rms_Wm2": 7.313211441040039,
+   "sst_input_identical": false,
+   "other_channels_identical": false
+  }
+ }
+}

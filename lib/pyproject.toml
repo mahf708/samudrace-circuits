@@ -1,0 +1,17 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "hc"
+version = "0.1.0"
+requires-python = ">=3.11"
+dependencies = []   # torch, fme, exege-core come from the project .venv (setup_env.sh)
+
+# exege finds the adapter through its entry-point group: open_intervenable("<cache dir>", "samudra-replay")
+[project.entry-points."exege.adapters"]
+samudra-replay = "hc.samudra_adapter:SamudraReplay"
+
+[tool.hatch.build.targets.wheel]
+packages = ["hc"]
+include = ["hc/*.yaml"]

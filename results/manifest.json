@@ -1,0 +1,121 @@
+{
+ "updated": "2026-11-20 05:57 ",
+ "model": "SamudrACE C1A0 (mahf708/e3smv3-lr-hist-samudrace@rc1)",
+ "page": "https://portal.nersc.gov/project/m5451/mahf708/samudrace-circuits/",
+ "heldout_years": [
+  [
+   1995,
+   1999
+  ],
+  [
+   2040,
+   2049
+  ]
+ ],
+ "claims": [
+  {
+   "id": "P0-1",
+   "idea": "setup",
+   "claim": "The laptop FLUS-thermometer number reproduces on Perlmutter (A100, fp32).",
+   "value": "-2.042 K per 100 W/m\u00b2 of warming flux [-2.076, -2.012] over 73 states of 1985; wrong sign on 99.85% of open ocean (laptop: \u22122.04 [\u22122.08, \u22122.01], 99.8%)",
+   "verdict": "reproduced",
+   "control": "slab law gives +0.33; FLDS/FSNS have the law's sign (0.33 / 0.28)",
+   "caveat": "1985 is a TRAINING year; uniform open-ocean shift (a 10\u00d710\u00b0 box gives ~2\u00d7)",
+   "json": "phase0/flus_slope.json",
+   "script": "phase0/flus_slope.py",
+   "command": "python -m hc.capture data/states/ic1985 --start 1985 --steps 73 && python phase0/flus_slope.py data/states/ic1985",
+   "status": "verified"
+  },
+  {
+   "id": "I1-F1a",
+   "idea": "idea1",
+   "claim": "In E3SM truth, the ocean's FLUS input is a near-exact thermometer of the SST it must predict (a target leak in the data).",
+   "value": "conditional slope -17.0 K per 100 W/m\u00b2 of warming flux (literal 1/(4\u03b5\u03c3T\u00b3): \u221217.3); thermometer sign on 99.5% of open ocean; per-cell R\u00b2 median 0.9983 (2045\u201349)",
+   "verdict": "leak present in truth",
+   "control": "the other four fluxes have conditional slopes \u2248 0 (medians |\u00b7| < 0.003)",
+   "caveat": "per-cell OLS with intercept; the preregistered alignment check (end vs start of window, pooled RMS) does NOT show the 20% margin (22.21 vs 22.28 W/m\u00b2) because a spatial offset dominates pooled RMS",
+   "json": "idea1_flus/results/f1.json",
+   "script": "idea1_flus/f1_analyze.py",
+   "command": "python idea1_flus/f1_analyze.py",
+   "status": "verified"
+  },
+  {
+   "id": "I1-F1b",
+   "idea": "idea1",
+   "claim": "C1A0 does not copy the truth thermometer: it uses about a tenth of it, with an unrelated spatial pattern, and keeps lawful-sign responses to the other fluxes.",
+   "value": "model/truth slope ratio 0.109; pattern correlation +0.03 (-0.02 without ice-shelf cavities); model FLUS -1.84 vs truth -16.93 K per 100 W/m\u00b2 (2045 states vs 2045\u201349 truth)",
+   "verdict": "preregistered verdict: something else to explain",
+   "control": "same result on 1995 states (ratio 0.109, r = 0.07); FLDS/FSNS model slopes +0.32/+0.29 vs truth \u2248 0",
+   "caveat": "model states are coupled-run inputs from truth ICs (not truth-forced); uniform shifts only for this comparison",
+   "json": "idea1_flus/results/f1_compare_t2045.json",
+   "script": "idea1_flus/f1_model_compare.py",
+   "command": "python idea1_flus/f1_model_compare.py data/states/t2045 2040s t2045",
+   "status": "verified"
+  },
+  {
+   "id": "I1-F2a",
+   "idea": "idea1",
+   "claim": "Below \u201cskip.0 + layer 0\u201d: FLUS splits about evenly between layer 0's linear 1\u00d71 skip_module and its InstanceNorm-ed convblock, whereas an SST perturbation goes 100% through the 1\u00d71 skip_module.",
+   "value": "FLUS uniform: skip.0 0.86, skip_module 0.53, convblock 0.47; box: skip.0 0.91, skip_module 0.35, convblock 0.65; sst: skip_module 1.00",
+   "verdict": "2045 (score year), 19 states, exact patching; 1995 replicates to \u00b10.01",
+   "control": "projection metric agrees within 0.05 for FLUS. <b>Skeptic pass:</b> an independent implementation (exege's new <code>samudra</code> Patchable adapter, EdgePatch semantics) gives skip.0 share 0.854 on 7 states of 2045 (localize.py: 0.86)",
+   "caveat": "near-linear response: sufficiency = necessity, shares sum to \u22481 (one result per split)",
+   "json": "idea1_flus/results/localize_summary_t2045.json",
+   "script": "idea1_flus/localize.py",
+   "command": "python idea1_flus/localize.py data/states/t2045 t2045 4 && python idea1_flus/localize_summary.py t2045",
+   "status": "verified"
+  },
+  {
+   "id": "I1-F2b",
+   "idea": "idea1",
+   "claim": "InstanceNorm statistics account for the box-vs-uniform difference of the FLUS response.",
+   "value": "freezing the convblock's IN statistics raises its uniform-shift share 0.47 \u2192 0.94 (box: 0.65 \u2192 0.65); predicted un-normalised uniform slope -2.65 vs measured box -2.58 K per 100 W/m\u00b2 (uniform -1.80)",
+   "verdict": "consistent",
+   "control": "the same freeze leaves box shares unchanged, as expected if a box barely moves whole-field statistics",
+   "caveat": "holds for FLUS only: for FLDS the same prediction gives 1.34\u00d7 vs measured box/uniform 1.07\u00d7; box ratio here is 1.43\u00d7 (laptop said ~2\u00d7)",
+   "json": "idea1_flus/results/localize_summary_t2045.json",
+   "script": "idea1_flus/localize.py",
+   "command": "python idea1_flus/localize_summary.py t2045",
+   "status": "narrowed"
+  },
+  {
+   "id": "I1-F3",
+   "idea": "idea1",
+   "claim": "At layer-0 channel granularity the FLUS shortcut cannot be removed without breaking FLDS; at the input it can.",
+   "value": "greedy-32 channels (selected on fit states 1985 + 1995, scored on 2045): FLUS \u00d70.08 but FLDS \u00d7-0.06; replacing the FLUS input with 5.67e-8\u00b7sst\u2074 keeps FLDS/FSNS \u00d71.00/\u00d71.02 and shifts the clean next SST by +0.17 K (open-ocean mean; RMS 0.49 K)",
+   "verdict": "PREREG rule: channel sets fail; input replacement passes (FLUS = 0 by construction)",
+   "control": "20 random size-matched sets per size: FLUS \u00d70.97 (10) / \u00d70.87 (32) median, 0 successes",
+   "caveat": "mean ablation at one place (layer-0 output); box shifts move SHFLX by +67% under input replacement; the one-step +0.17 K is what the coupled de-leak tests over years",
+   "json": "idea1_flus/results/ablate_l0_v1_summary.json",
+   "script": "idea1_flus/ablate.py",
+   "command": "python idea1_flus/ablate.py l0 data/states/ic1985,data/states/t1995 data/states/t2045 v1 && python idea1_flus/ablate_summary.py ablate_l0_v1",
+   "status": "verified"
+  },
+  {
+   "id": "I1-R",
+   "idea": "idea1",
+   "claim": "Every ocean checkpoint has the FLUS thermometer; its strength tracks how leaky the FLUS it was last trained on was.",
+   "value": "ocean-only E11 seeds -4.23\u2026-3.99; after more ocean-only fine-tuning (E11-FT) -7.07\u2026-6.85; after coupled fine-tuning (C1A0, C1A1, C0A0, E30/E31 seeds) -2.49\u2026-1.71 K per 100 W/m\u00b2 (uniform, 1995 truth-forced inputs)",
+   "verdict": "17/17 have the shortcut (thermometer sign > 75% of area)",
+   "control": "truth's conditional slope is \u221217: every model is far below it; in this sample, coupled fine-tuning also turns LHFLX from the wrong sign to the lawful one",
+   "caveat": "C1A1 shares C1A0's ocean init and E11-FT S01 is C1A0's ocean before coupled fine-tuning (not independent); E17 (1-day ocean) excluded: 5-day inputs",
+   "json": "idea1_flus/results/replicate_*.json",
+   "script": "idea1_flus/replicate.py",
+   "command": "python idea1_flus/replicate.py NAME=CKPT ...",
+   "status": "verified"
+  },
+  {
+   "id": "I3-1",
+   "idea": "idea3",
+   "claim": "With balanced perturbations, C1A0 keeps the amount of each scale about as E3SM does, but decorrelates the pattern faster, increasingly so at small scales.",
+   "value": "U_7 projection vs truth AR(1): l\u22488 0.83 vs 0.98; l\u224831 0.52 vs 0.73; l\u224855 0.27 vs 0.45; magnitude at l\u224855 0.43",
+   "verdict": "exploratory",
+   "control": "truth per-degree AR(1) on fit and score years (agree within 0.02); preregistered single-variable probes shown for contrast",
+   "caveat": "probe = one 5-day truth difference direction per state (12 states \u00d7 3 noise draws); truth AR(1) averages all anomalies; T_1 is the exception (small scales persist more than in truth); l \u2264 2 includes global means",
+   "json": "idea3_gain/results/gain_atm_bal_v2.json",
+   "script": "idea3_gain/gain_atm_bal.py",
+   "command": "python idea3_gain/gain_atm_bal.py data/states/atm12 data/states/atm12m5 v2",
+   "status": "narrowed"
+  }
+ ]
+}

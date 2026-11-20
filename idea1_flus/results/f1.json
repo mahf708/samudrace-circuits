@@ -1,0 +1,547 @@
+{
+ "prereg": "PREREG.md 1.1",
+ "blocks": {
+  "1990s": {
+   "fit": [
+    1995,
+    1996,
+    1997
+   ],
+   "score": [
+    1998,
+    1999
+   ]
+  },
+  "2040s": {
+   "fit": [
+    2040,
+    2041,
+    2042,
+    2043,
+    2044
+   ],
+   "score": [
+    2045,
+    2046,
+    2047,
+    2048,
+    2049
+   ]
+  },
+  "1980s_train_contrast": {
+   "fit": [
+    1985,
+    1986,
+    1987
+   ],
+   "score": [
+    1988,
+    1989
+   ]
+  }
+ },
+ "alignment|1990s": {
+  "FLUS|prev_window_mean_sst[w-1]": {
+   "eps_fit": 0.9883192076762461,
+   "rms_Wm2": 22.28497438696192,
+   "R2_pooled": 0.8449162485717088,
+   "cell_R2_median": 0.7440695860139852,
+   "mean_residual_Wm2": 3.3270254082852895
+  },
+  "FLUS|target_window_mean_sst[w]": {
+   "eps_fit": 0.9883704277994011,
+   "rms_Wm2": 22.211677041717394,
+   "R2_pooled": 0.8459347405063568,
+   "cell_R2_median": 0.7700290420442906,
+   "mean_residual_Wm2": 3.3147588396952843
+  },
+  "FLUS|window_mean_TS^4": {
+   "eps_fit": 0.9948226477889096,
+   "rms_Wm2": 16.503274507613664,
+   "R2_pooled": 0.9149484433770326,
+   "cell_R2_median": 0.9440604170427918,
+   "mean_residual_Wm2": 1.3962153789488916
+  },
+  "FLUS|window_start_TS": {
+   "eps_fit": 0.9955968313876142,
+   "rms_Wm2": 16.767117605742026,
+   "R2_pooled": 0.9122072121109777,
+   "cell_R2_median": 0.9502199096876817,
+   "mean_residual_Wm2": 1.448109676836491
+  },
+  "FLUS|window_end_TS": {
+   "eps_fit": 0.995694954441382,
+   "rms_Wm2": 16.856047572627386,
+   "R2_pooled": 0.9112734661330822,
+   "cell_R2_median": 0.9512009363711347,
+   "mean_residual_Wm2": 1.4340479289846308
+  },
+  "FLUS_eam|prev_window_mean_sst[w-1]": {
+   "eps_fit": 0.9957134785190702,
+   "rms_Wm2": 9.166615806640316,
+   "R2_pooled": 0.9672969092550757,
+   "cell_R2_median": 0.9370999235604652,
+   "mean_residual_Wm2": 1.1001660101639015
+  },
+  "FLUS_eam|target_window_mean_sst[w]": {
+   "eps_fit": 0.9957750758272593,
+   "rms_Wm2": 8.8289253249162,
+   "R2_pooled": 0.9696620362806342,
+   "cell_R2_median": 0.9609707954522161,
+   "mean_residual_Wm2": 1.0836066599635834
+  },
+  "FLUS_eam|window_mean_TS^4": {
+   "eps_fit": 1.0002679669907353,
+   "rms_Wm2": 1.121293372536886,
+   "R2_pooled": 0.9995106616525595,
+   "cell_R2_median": 0.999832554755616,
+   "mean_residual_Wm2": -0.006980675340604721
+  },
+  "FLUS_eam|window_start_TS": {
+   "eps_fit": 1.0010307443123494,
+   "rms_Wm2": 4.503872025351325,
+   "R2_pooled": 0.992105169247752,
+   "cell_R2_median": 0.9884161256092435,
+   "mean_residual_Wm2": 0.05175524837377187
+  },
+  "FLUS_eam|window_end_TS": {
+   "eps_fit": 1.0011415166763302,
+   "rms_Wm2": 4.483155917580316,
+   "R2_pooled": 0.9921776286912402,
+   "cell_R2_median": 0.9879743619324355,
+   "mean_residual_Wm2": 0.03253926134494396
+  }
+ },
+ "regression|1990s|score": {
+  "n_windows": 146,
+  "open_cells": 33014,
+  "open_area_frac": 0.6536798451327207,
+  "FLUS": {
+   "K_per_100Wm2_warming_mean": -17.16936848516108,
+   "median": -16.951740235156556,
+   "p05": -20.355382174938857,
+   "p95": -15.870111714785281,
+   "frac_area_negative(thermometer_sign_for_FLUS)": 0.9951446186413037,
+   "frac_area_|z|>2": 0.995045780444975
+  },
+  "FLDS": {
+   "K_per_100Wm2_warming_mean": 0.020436662001350147,
+   "median": 0.003182498567411286,
+   "p05": -0.026518994027746143,
+   "p95": 0.04653811378510959,
+   "frac_area_negative(thermometer_sign_for_FLUS)": 0.38246863368689393,
+   "frac_area_|z|>2": 0.17654817830922495
+  },
+  "FSNS": {
+   "K_per_100Wm2_warming_mean": -0.004640228100362654,
+   "median": 0.002099766995227624,
+   "p05": -0.010176598973242496,
+   "p95": 0.01871173827530116,
+   "frac_area_negative(thermometer_sign_for_FLUS)": 0.2903708245789808,
+   "frac_area_|z|>2": 0.23167250030336156
+  },
+  "LHFLX": {
+   "K_per_100Wm2_warming_mean": -0.12164508803169721,
+   "median": 0.0016104508038496362,
+   "p05": -0.013157818733848702,
+   "p95": 0.015039976075098839,
+   "frac_area_negative(thermometer_sign_for_FLUS)": 0.33697128401938764,
+   "frac_area_|z|>2": 0.2799207416937782
+  },
+  "SHFLX": {
+   "K_per_100Wm2_warming_mean": 0.08208394669768326,
+   "median": -3.1525070220592925e-07,
+   "p05": -0.04970589945672744,
+   "p95": 0.05488722219398293,
+   "frac_area_negative(thermometer_sign_for_FLUS)": 0.49820022203631,
+   "frac_area_|z|>2": 0.21531556393420676
+  },
+  "R2_median": 0.9991219069706925,
+  "frisch_waugh_check_maxabs_diff": 5.126021190848817e-09,
+  "literal_thermometer_K_per_100Wm2_mean": 17.457271453932506
+ },
+ "regression|1990s|fit": {
+  "n_windows": 218,
+  "open_cells": 32464,
+  "open_area_frac": 0.6466714495830328,
+  "FLUS": {
+   "K_per_100Wm2_warming_mean": -17.238715997400814,
+   "median": -16.930779733030583,
+   "p05": -20.360695258156753,
+   "p95": -15.911849926680937,
+   "frac_area_negative(thermometer_sign_for_FLUS)": 0.9951587849471302,
+   "frac_area_|z|>2": 0.9949746326945702
+  },
+  "FLDS": {
+   "K_per_100Wm2_warming_mean": 0.0008590568374193917,
+   "median": 0.0025701100242476347,
+   "p05": -0.02512283443831187,
+   "p95": 0.03496362847902932,
+   "frac_area_negative(thermometer_sign_for_FLUS)": 0.3996532177828731,
+   "frac_area_|z|>2": 0.15160193294965613
+  },
+  "FSNS": {
+   "K_per_100Wm2_warming_mean": -0.05541958807082647,
+   "median": 0.0016441425028227478,
+   "p05": -0.01061739033458028,
+   "p95": 0.013502846591389438,
+   "frac_area_negative(thermometer_sign_for_FLUS)": 0.32564562519696977,
+   "frac_area_|z|>2": 0.19599736937546167
+  },
+  "LHFLX": {
+   "K_per_100Wm2_warming_mean": -0.103120974647436,
+   "median": 0.001697075890465264,
+   "p05": -0.010377640312346881,
+   "p95": 0.015518897518992667,
+   "frac_area_negative(thermometer_sign_for_FLUS)": 0.33263986538805096,
+   "frac_area_|z|>2": 0.2733892006900926
+  },
+  "SHFLX": {
+   "K_per_100Wm2_warming_mean": 0.13863189659436553,
+   "median": -0.00016777838341980057,
+   "p05": -0.0446458734997113,
+   "p95": 0.055837721473573756,
+   "frac_area_negative(thermometer_sign_for_FLUS)": 0.5067277330398767,
+   "frac_area_|z|>2": 0.19012594791783766
+  },
+  "R2_median": 0.9988431911786607,
+  "frisch_waugh_check_maxabs_diff": 8.132816586847724e-09,
+  "literal_thermometer_K_per_100Wm2_mean": 17.450123434267862
+ },
+ "alignment|2040s": {
+  "FLUS|prev_window_mean_sst[w-1]": {
+   "eps_fit": 0.9886551519362065,
+   "rms_Wm2": 22.372768040706852,
+   "R2_pooled": 0.8516118035191151,
+   "cell_R2_median": 0.7809802487871284,
+   "mean_residual_Wm2": 3.2268440510262097
+  },
+  "FLUS|target_window_mean_sst[w]": {
+   "eps_fit": 0.9887284867783791,
+   "rms_Wm2": 22.292945153752562,
+   "R2_pooled": 0.8526687709867075,
+   "cell_R2_median": 0.8058476716471781,
+   "mean_residual_Wm2": 3.2015595122681595
+  },
+  "FLUS|window_mean_TS^4": {
+   "eps_fit": 0.9946388923706925,
+   "rms_Wm2": 17.028622872402195,
+   "R2_pooled": 0.914035533674767,
+   "cell_R2_median": 0.9458888870406275,
+   "mean_residual_Wm2": 1.4184028667642423
+  },
+  "FLUS|window_start_TS": {
+   "eps_fit": 0.9953774373477667,
+   "rms_Wm2": 17.274893135122856,
+   "R2_pooled": 0.9115310942807855,
+   "cell_R2_median": 0.9524264426709393,
+   "mean_residual_Wm2": 1.4919529694321605
+  },
+  "FLUS|window_end_TS": {
+   "eps_fit": 0.9954982422120763,
+   "rms_Wm2": 17.363446844815865,
+   "R2_pooled": 0.9106217596173573,
+   "cell_R2_median": 0.9541234996618037,
+   "mean_residual_Wm2": 1.4648725956010584
+  },
+  "FLUS_eam|prev_window_mean_sst[w-1]": {
+   "eps_fit": 0.9961060756037389,
+   "rms_Wm2": 8.910070740440597,
+   "R2_pooled": 0.9708307279363911,
+   "cell_R2_median": 0.9483786547278079,
+   "mean_residual_Wm2": 1.0260728582628582
+  },
+  "FLUS_eam|target_window_mean_sst[w]": {
+   "eps_fit": 0.9961910952951502,
+   "rms_Wm2": 8.532663529165193,
+   "R2_pooled": 0.9732494615815113,
+   "cell_R2_median": 0.9703531523179442,
+   "mean_residual_Wm2": 0.9958669025374473
+  },
+  "FLUS_eam|window_mean_TS^4": {
+   "eps_fit": 1.000280752494106,
+   "rms_Wm2": 1.1491302196068274,
+   "R2_pooled": 0.9995148212417869,
+   "cell_R2_median": 0.9998315307752971,
+   "mean_residual_Wm2": -0.009389376584488258
+  },
+  "FLUS_eam|window_start_TS": {
+   "eps_fit": 1.0010085727716271,
+   "rms_Wm2": 4.626853160699565,
+   "R2_pooled": 0.9921343481334657,
+   "cell_R2_median": 0.9894028599534156,
+   "mean_residual_Wm2": 0.07089920532005657
+  },
+  "FLUS_eam|window_end_TS": {
+   "eps_fit": 1.0011422505613248,
+   "rms_Wm2": 4.591373219231987,
+   "R2_pooled": 0.9922545174388924,
+   "cell_R2_median": 0.9888026434545458,
+   "mean_residual_Wm2": 0.03849939400268613
+  }
+ },
+ "regression|2040s|score": {
+  "n_windows": 365,
+  "open_cells": 33485,
+  "open_area_frac": 0.6600536247488437,
+  "FLUS": {
+   "K_per_100Wm2_warming_mean": -17.009517588489,
+   "median": -16.77034495577005,
+   "p05": -20.18412397103607,
+   "p95": -15.722889376219236,
+   "frac_area_negative(thermometer_sign_for_FLUS)": 0.995220812970478,
+   "frac_area_|z|>2": 0.9950972323053706
+  },
+  "FLDS": {
+   "K_per_100Wm2_warming_mean": -0.022332656960882807,
+   "median": 0.0020114258261526453,
+   "p05": -0.033155990260148635,
+   "p95": 0.04196178745827324,
+   "frac_area_negative(thermometer_sign_for_FLUS)": 0.42551104039880155,
+   "frac_area_|z|>2": 0.1710947336465885
+  },
+  "FSNS": {
+   "K_per_100Wm2_warming_mean": 0.0040317405033658705,
+   "median": 0.0014521079992710587,
+   "p05": -0.01093536993994727,
+   "p95": 0.013267278005667812,
+   "frac_area_negative(thermometer_sign_for_FLUS)": 0.34321232249672606,
+   "frac_area_|z|>2": 0.19986960418221714
+  },
+  "LHFLX": {
+   "K_per_100Wm2_warming_mean": -0.17563336130348672,
+   "median": 0.002043220811103667,
+   "p05": -0.01103087121621058,
+   "p95": 0.021544275335776165,
+   "frac_area_negative(thermometer_sign_for_FLUS)": 0.29913774797012466,
+   "frac_area_|z|>2": 0.3584306803052724
+  },
+  "SHFLX": {
+   "K_per_100Wm2_warming_mean": 0.12373526217686423,
+   "median": -0.00025298013527573303,
+   "p05": -0.05887392813426209,
+   "p95": 0.05821890350719756,
+   "frac_area_negative(thermometer_sign_for_FLUS)": 0.5119080935170338,
+   "frac_area_|z|>2": 0.24561630752117006
+  },
+  "R2_median": 0.9983458663411588,
+  "frisch_waugh_check_maxabs_diff": 5.105408429351144e-09,
+  "literal_thermometer_K_per_100Wm2_mean": 17.293849277044398
+ },
+ "regression|2040s|fit": {
+  "n_windows": 364,
+  "open_cells": 33387,
+  "open_area_frac": 0.6593740335693594,
+  "FLUS": {
+   "K_per_100Wm2_warming_mean": -17.12720960939614,
+   "median": -16.81630866316479,
+   "p05": -20.22936299666866,
+   "p95": -15.720983660023629,
+   "frac_area_negative(thermometer_sign_for_FLUS)": 0.9952630465409052,
+   "frac_area_|z|>2": 0.9950799784262181
+  },
+  "FLDS": {
+   "K_per_100Wm2_warming_mean": -0.09759786059703986,
+   "median": 0.0019133745322396202,
+   "p05": -0.03620456231199469,
+   "p95": 0.0354252485970383,
+   "frac_area_negative(thermometer_sign_for_FLUS)": 0.4187553758872175,
+   "frac_area_|z|>2": 0.18976205589305686
+  },
+  "FSNS": {
+   "K_per_100Wm2_warming_mean": -0.016064149022949593,
+   "median": 0.001490770715004063,
+   "p05": -0.01085729486315393,
+   "p95": 0.01301917137012941,
+   "frac_area_negative(thermometer_sign_for_FLUS)": 0.3269319788449983,
+   "frac_area_|z|>2": 0.20122130661560195
+  },
+  "LHFLX": {
+   "K_per_100Wm2_warming_mean": 0.5627185521078245,
+   "median": 0.002164325152696322,
+   "p05": -0.009794141136609244,
+   "p95": 0.02068011354154687,
+   "frac_area_negative(thermometer_sign_for_FLUS)": 0.2837515392737552,
+   "frac_area_|z|>2": 0.36131447902160313
+  },
+  "SHFLX": {
+   "K_per_100Wm2_warming_mean": -0.20799087418318463,
+   "median": 0.0,
+   "p05": -0.05319537370556969,
+   "p95": 0.06262362069659258,
+   "frac_area_negative(thermometer_sign_for_FLUS)": 0.48370568325134927,
+   "frac_area_|z|>2": 0.25098535705797376
+  },
+  "R2_median": 0.9985750321235712,
+  "frisch_waugh_check_maxabs_diff": 5.337157216178667e-09,
+  "literal_thermometer_K_per_100Wm2_mean": 17.31537293796312
+ },
+ "alignment|1980s_train_contrast": {
+  "FLUS|prev_window_mean_sst[w-1]": {
+   "eps_fit": 0.9882767377992601,
+   "rms_Wm2": 22.28869526323268,
+   "R2_pooled": 0.8441516918228571,
+   "cell_R2_median": 0.7459542948420995,
+   "mean_residual_Wm2": 3.3337695254853137
+  },
+  "FLUS|target_window_mean_sst[w]": {
+   "eps_fit": 0.9883238466762945,
+   "rms_Wm2": 22.21639639659122,
+   "R2_pooled": 0.8451611166643819,
+   "cell_R2_median": 0.7709632463009758,
+   "mean_residual_Wm2": 3.3269233073026494
+  },
+  "FLUS|window_mean_TS^4": {
+   "eps_fit": 0.9948676435019114,
+   "rms_Wm2": 16.634202419860596,
+   "R2_pooled": 0.9131965946180449,
+   "cell_R2_median": 0.9462576690632603,
+   "mean_residual_Wm2": 1.3725998288821575
+  },
+  "FLUS|window_start_TS": {
+   "eps_fit": 0.9956614585949697,
+   "rms_Wm2": 16.875482255783986,
+   "R2_pooled": 0.9106601570958099,
+   "cell_R2_median": 0.9526115051763897,
+   "mean_residual_Wm2": 1.4315420837761839
+  },
+  "FLUS|window_end_TS": {
+   "eps_fit": 0.9957524210942439,
+   "rms_Wm2": 16.964560427351365,
+   "R2_pooled": 0.9097144971481405,
+   "cell_R2_median": 0.953770100462402,
+   "mean_residual_Wm2": 1.424948380934739
+  },
+  "FLUS_eam|prev_window_mean_sst[w-1]": {
+   "eps_fit": 0.9956562248475805,
+   "rms_Wm2": 8.998243103400009,
+   "R2_pooled": 0.9682215167885837,
+   "cell_R2_median": 0.9367893864420598,
+   "mean_residual_Wm2": 1.11843726264058
+  },
+  "FLUS_eam|target_window_mean_sst[w]": {
+   "eps_fit": 0.9957132220519631,
+   "rms_Wm2": 8.660172388330713,
+   "R2_pooled": 0.9705645422255567,
+   "cell_R2_median": 0.9605730990779029,
+   "mean_residual_Wm2": 1.1075342570321145
+  },
+  "FLUS_eam|window_mean_TS^4": {
+   "eps_fit": 1.0002637334595452,
+   "rms_Wm2": 1.1169331719972775,
+   "R2_pooled": 0.9995103654010682,
+   "cell_R2_median": 0.9998400116948207,
+   "mean_residual_Wm2": -0.005236501192245369
+  },
+  "FLUS_eam|window_start_TS": {
+   "eps_fit": 1.0010379035876695,
+   "rms_Wm2": 4.521060420679843,
+   "R2_pooled": 0.991977710279409,
+   "cell_R2_median": 0.9887467111242043,
+   "mean_residual_Wm2": 0.06405692023588708
+  },
+  "FLUS_eam|window_end_TS": {
+   "eps_fit": 1.0011423895280693,
+   "rms_Wm2": 4.490801354005547,
+   "R2_pooled": 0.9920847359037889,
+   "cell_R2_median": 0.9882833950969486,
+   "mean_residual_Wm2": 0.05196958647956074
+  }
+ },
+ "regression|1980s_train_contrast|score": {
+  "n_windows": 146,
+  "open_cells": 32832,
+  "open_area_frac": 0.6513727558799316,
+  "FLUS": {
+   "K_per_100Wm2_warming_mean": -17.246857037373264,
+   "median": -16.987813508449374,
+   "p05": -20.366906481680125,
+   "p95": -15.864455638796104,
+   "frac_area_negative(thermometer_sign_for_FLUS)": 0.9951683417615158,
+   "frac_area_|z|>2": 0.9950015153703238
+  },
+  "FLDS": {
+   "K_per_100Wm2_warming_mean": -0.04894410745530313,
+   "median": 0.0027796822853761814,
+   "p05": -0.033524706138502246,
+   "p95": 0.041532261587543425,
+   "frac_area_negative(thermometer_sign_for_FLUS)": 0.3945889699935992,
+   "frac_area_|z|>2": 0.16951300736825303
+  },
+  "FSNS": {
+   "K_per_100Wm2_warming_mean": 0.00424612463065282,
+   "median": 0.001591331634358244,
+   "p05": -0.013874878411353885,
+   "p95": 0.01450413966688535,
+   "frac_area_negative(thermometer_sign_for_FLUS)": 0.3385008687867383,
+   "frac_area_|z|>2": 0.2361735942964658
+  },
+  "LHFLX": {
+   "K_per_100Wm2_warming_mean": 0.4479620201932584,
+   "median": 0.0016007333813902462,
+   "p05": -0.008668996388193372,
+   "p95": 0.02023426055112297,
+   "frac_area_negative(thermometer_sign_for_FLUS)": 0.32902935936282407,
+   "frac_area_|z|>2": 0.24711618473748498
+  },
+  "SHFLX": {
+   "K_per_100Wm2_warming_mean": -0.18795019569786078,
+   "median": 0.0,
+   "p05": -0.04773212503993427,
+   "p95": 0.05354132506255924,
+   "frac_area_negative(thermometer_sign_for_FLUS)": 0.4840259748588099,
+   "frac_area_|z|>2": 0.2230435974414455
+  },
+  "R2_median": 0.9991543584775737,
+  "frisch_waugh_check_maxabs_diff": 4.712263607098421e-09,
+  "literal_thermometer_K_per_100Wm2_mean": 17.465602049888084
+ },
+ "regression|1980s_train_contrast|fit": {
+  "n_windows": 218,
+  "open_cells": 32484,
+  "open_area_frac": 0.647182129882003,
+  "FLUS": {
+   "K_per_100Wm2_warming_mean": -17.197717556415945,
+   "median": -16.96724582342162,
+   "p05": -20.27252435916905,
+   "p95": -15.905894411843635,
+   "frac_area_negative(thermometer_sign_for_FLUS)": 0.9951051956694139,
+   "frac_area_|z|>2": 0.9949442382998079
+  },
+  "FLDS": {
+   "K_per_100Wm2_warming_mean": 0.011451778796664725,
+   "median": 0.0014345964931374057,
+   "p05": -0.03279781206960133,
+   "p95": 0.03231438236212544,
+   "frac_area_negative(thermometer_sign_for_FLUS)": 0.43894603178042785,
+   "frac_area_|z|>2": 0.1649372785825369
+  },
+  "FSNS": {
+   "K_per_100Wm2_warming_mean": -0.01915237291003716,
+   "median": 0.0015216806539043754,
+   "p05": -0.011843408207143394,
+   "p95": 0.013498033943365143,
+   "frac_area_negative(thermometer_sign_for_FLUS)": 0.3297909496008972,
+   "frac_area_|z|>2": 0.18964897621817137
+  },
+  "LHFLX": {
+   "K_per_100Wm2_warming_mean": -0.2428355451482137,
+   "median": 0.0019492598233659681,
+   "p05": -0.008983303053671043,
+   "p95": 0.021123728414374446,
+   "frac_area_negative(thermometer_sign_for_FLUS)": 0.2968872215290115,
+   "frac_area_|z|>2": 0.3098422143406622
+  },
+  "SHFLX": {
+   "K_per_100Wm2_warming_mean": 0.1259157432344754,
+   "median": -0.0013605789063964092,
+   "p05": -0.05966865605670289,
+   "p95": 0.04801259793752115,
+   "frac_area_negative(thermometer_sign_for_FLUS)": 0.5505476597164853,
+   "frac_area_|z|>2": 0.19953335053125132
+  },
+  "R2_median": 0.9988676947141328,
+  "frisch_waugh_check_maxabs_diff": 5.660048485456315e-09,
+  "literal_thermometer_K_per_100Wm2_mean": 17.46290709483844
+ }
+}

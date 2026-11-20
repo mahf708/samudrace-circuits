@@ -1,0 +1,12 @@
+.venv/
+ace-tag/
+exege/
+data/
+**/__pycache__/
+*.npy
+*.npz
+*.nc
+*.tar
+slurm-*.out
+logs/
+proto/
