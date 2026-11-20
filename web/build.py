@@ -490,13 +490,16 @@ restate = ["<h2 id='restate'>Numbers that are restatements of one another</h2><u
            "<li>Edge-patching sufficiency and necessity, and skip.0 + deep ≈ 1, under a near-linear response.</li>",
            "<li>The laptop's zero-net violation, Eq. 10 M and joint M all follow from the FLUS/FLDS ratio (PLAN Sec. 2.3).</li></ul>"]
 agents = ["<h2 id='agents'>For participants and their agents</h2>",
-          f"<ul><li>Code: <a href='{GH}'>{GH}</a> (to be pushed after review) · data products: <a href='{HF}'>{HF}</a> (to be uploaded)</li>",
+          "<p><b>Start with <a href='data/HACKATHON.md'>HACKATHON.md</a></b>: setup in ~20 min, what is ready, six open tracks, and a prompt to hand your agent.</p>",
+          f"<ul><li>Code: <a href='{GH}'>{GH}</a> · data products (held-out states with truth targets, truth extracts, results): <a href='{HF}'>{HF}</a></li>",
+          "<li><a href='data/REPORT.md'>REPORT.md</a>: findings with controls and caveats; verified / narrowed / open per idea</li>",
+          "<li>exege <code>samudra</code> adapter (Patchable + EdgeGradients): <a href='https://github.com/mahf708/exege/pull/12'>mahf708/exege#12</a></li>",
           "<li><a href='data/AGENTS.md'>AGENTS.md</a>: where everything is, the exact libraries, pitfalls we hit</li>",
           "<li><a href='data/manifest.json'>manifest.json</a>: every claim on this page with value, verdict, control, caveat, source JSON, script and command</li>",
           "<li><a href='data/PREREG.md'>PREREG.md</a> (fixed before results, with change log) · <a href='data/INVENTORY.md'>INVENTORY.md</a></li></ul>"]
 
 now = datetime.datetime.now().strftime("%Y-%m-%d %H:%M %Z")
-for doc in ("AGENTS.md", "PREREG.md", "INVENTORY.md"):
+for doc in ("AGENTS.md", "PREREG.md", "INVENTORY.md", "HACKATHON.md", "REPORT.md"):
     shutil.copy(os.path.join(ROOT, doc), DATA)
 os.makedirs(os.path.join(ROOT, "results"), exist_ok=True)
 manifest = {"updated": now, "model": "SamudrACE C1A0 (mahf708/e3smv3-lr-hist-samudrace@rc1)", "page": "https://portal.nersc.gov/project/m5451/mahf708/samudrace-circuits/",
@@ -530,11 +533,11 @@ status = ("<div class='status'><span>Phase 0 ✔</span><span>F1 truth test ✔</
           f"<span>Idea 3 gain {'✔' if gs else '…'}</span><span>Idea 1 coupled de-leak · Idea 2: Phase 2</span></div>")
 page = f"""<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Inside SamudrACE C1A0</title><style>{CSS}</style></head><body>
-<nav><a href="#headline">Headline</a><a href="#setup">Setup</a><a href="#idea1">FLUS thermometer</a><a href="#idea2">Errors</a><a href="#idea3">Scale gain</a><a href="#restate">Restatements</a><a href="#agents">Reproduce</a></nav>
+<nav><a href="#agents">Start here</a><a href="#headline">Headline</a><a href="#setup">Setup</a><a href="#idea1">FLUS thermometer</a><a href="#idea2">Errors</a><a href="#idea3">Scale gain</a><a href="#restate">Restatements</a><a href="#agents">Reproduce</a></nav>
 <main><h1>Inside SamudrACE C1A0</h1>
 <p class="lede">Circuits, law witnesses and error agreement for the E3SMv3 coupled emulator (SFNO atmosphere + Samudra ocean),
 finished at scale on Perlmutter against <b>E3SM truth</b>, scored only on years the model never saw (1995–1999, 2040–2049).
-Rules were preregistered before results (<a href="data/PREREG.md">PREREG.md</a>). Work in progress; this page is rebuilt from the result JSONs.</p>
+Rules were preregistered before results (<a href="data/PREREG.md">PREREG.md</a>). This page is rebuilt from the result JSONs. <b>Participants: start with <a href="data/HACKATHON.md">HACKATHON.md</a> and <a href="https://github.com/mahf708/samudrace-circuits">the repo</a>.</b></p>
 {status}
 <h2 id="headline">Headline so far</h2>
 {''.join(head)}
