@@ -11,3 +11,4 @@ slurm-*.out
 logs/
 proto/
 _fresh/
+runs/
